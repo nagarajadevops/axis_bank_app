@@ -1,6 +1,8 @@
 node{
     def mavenHome = tool name: "maven3.8.5"
 echo "The node name is: ${NODE_NAME}"
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
+
     stage('git clone'){
         git branch: 'development', credentialsId: '7e41adad-56cd-4ccd-92fa-32f71492a7dc', url: 'https://github.com/nagarajadevops/maven-web-application-m.git'
     }
